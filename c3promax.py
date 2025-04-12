@@ -149,4 +149,4 @@ if __name__ == "__main__":
     print("\n🔍 SECURITY TEST RESULTS 🔍")
     for test, result in results.items():
         print(f"\n✅ {test.upper().replace('_', ' ')}:")
-        print(json.dumps(result, indent=2) if isinstance(result, dict) else print(result)
+        print(json.dumps(result, indent=2) if isinstance(result, dict) else print(result))
