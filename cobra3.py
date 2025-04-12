@@ -62,9 +62,9 @@ def main():
     parser = argparse.ArgumentParser(description='MEXC Working Tester')
     parser.add_argument('--api-key', required=True, help='MEXC API Key')
     parser.add_argument('--api-secret', required=True, help='MEXC API Secret')
-    parser.add_argument('--symbol', default='BTCUSDT', help='Trading pair')
+    parser.add_argument('--symbol', default='BTC/USDT', help='Trading pair')
     parser.add_argument('--quantity', type=float, default=0.001, help='Order quantity')
-    parser.add_argument('--price', type=float, default=10000, help='Order price')
+    parser.add_argument('--price', type=float, default=85302, help='Order price')
     
     args = parser.parse_args()
     
