@@ -164,7 +164,7 @@ class MEXCDoomsdayUltra:
                     executor.submit(self._http2_apocalypse, params): 'http2_apocalypse',
                     executor.submit(lambda: asyncio.run(self._websocket_armageddon(symbol, qty, price)): 'websocket_armageddon',
                     executor.submit(self._zero_day_simulation): 'zero_day_preview'
-                }
+                })
                 for future in concurrent.futures.as_completed(futures):
                     results[futures[future]] = future.result()
         except Exception as e:
