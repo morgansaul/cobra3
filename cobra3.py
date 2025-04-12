@@ -53,7 +53,7 @@ class MEXCTester:
         params = self._sign_request(params)
         
         response = self.session.post(
-            f"{self.base_url}/api/v3/order/test",
+            f"{self.base_url}/api/v3/order",
             params=params
         )
         return response.json()
